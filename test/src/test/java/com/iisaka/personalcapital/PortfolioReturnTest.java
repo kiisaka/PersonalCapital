@@ -28,6 +28,12 @@ public class PortfolioReturnTest {
 			 veryConservativePortfolios.add(new Portfolio(veryConservativePortfolio));
 		 }
 	}
+	
+	@Test
+	public void testInflationAdjustedReturn() {
+		PortfolioReturnSimulation simulation = new PortfolioReturnSimulation(0, 1, 100.0d, 0.0d, 0.0d, 0.035d);
+		assert(100.0d == simulation.calculateInflationAdjustedReturn(0.035d));
+	}
 
 	@Test
 	public void simulateReturns() {

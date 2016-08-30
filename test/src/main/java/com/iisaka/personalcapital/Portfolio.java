@@ -25,7 +25,7 @@ public class Portfolio implements Cloneable {
 	
 	public void computeRandomReturn() {
 		Double portfolioReturn = expectedReturn + expectedRisk * random.nextGaussian();
-		currentValue *= (portfolioReturn + 1.0d);
+		currentValue *= portfolioReturn + 1.0d;
 	}
 
 	public Double getCurrentValue() {
