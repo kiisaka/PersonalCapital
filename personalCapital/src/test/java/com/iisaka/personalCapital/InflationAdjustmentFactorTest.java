@@ -17,7 +17,7 @@ public class InflationAdjustmentFactorTest extends TestCase {
 		//	For this purpose, set up a simulation with no portfolio, but set the
 		//	initial value to be 100, with an inflation rate of 3.5%
 		//
-		simulation = new PortfolioReturnSimulation(0, 1, new BigDecimal("100"), 0.0d, 0.0d, 0.035d);
+		simulation = new PortfolioReturnSimulation("Inflation tracking", 0, 1, new BigDecimal("100"), 0.0d, 0.0d, 0.035d);
 	}
 
 	@Test

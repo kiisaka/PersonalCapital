@@ -14,6 +14,8 @@ import org.apache.commons.math3.stat.StatUtils;
 
 public class PortfolioReturnSimulation {
 
+	protected String name;
+	
 	protected List<Portfolio> portfolios;
 	protected double[] portfolioValues;
 
@@ -25,12 +27,13 @@ public class PortfolioReturnSimulation {
 	protected int numPeriods;
 	protected Double inflationAdjustmentFactor;
 
-	public PortfolioReturnSimulation(int numPortfolios, int numPeriods, BigDecimal initialValue, Double expectedReturn,
+	public PortfolioReturnSimulation(String name, int numPortfolios, int numPeriods, BigDecimal initialValue, Double expectedReturn,
 			Double expectedRisk, Double inflationRate) {
 
 		portfolios = new ArrayList<>(numPortfolios);
 		portfolioValues = new double[numPortfolios];
 
+		this.name = name;
 		this.numPeriods = numPeriods;
 		this.initialValue = initialValue;
 		this.expectedReturn = expectedReturn;
@@ -38,7 +41,7 @@ public class PortfolioReturnSimulation {
 		this.inflationRate = inflationRate;
 
 		for (int i = 0; i < numPortfolios; i++) {
-			portfolios.add(new Portfolio(initialValue, expectedReturn, expectedRisk));
+			portfolios.add(new Portfolio(name, initialValue, expectedReturn, expectedRisk));
 		}
 	}
 
@@ -50,11 +53,15 @@ public class PortfolioReturnSimulation {
 
 	public void run() {
 
+		//	This can be parallelized
+		
 		for (int i = 0; i < numPeriods; i++) {
 			for (Portfolio portfolio : portfolios) {
 				portfolio.computeRandomReturn();
 			}
 		}
+		
+		//	Store the portfolio values in an array for stats
 
 		for (int i = 0; i < portfolios.size(); i++) {
 			portfolioValues[i] = portfolios.get(i).getCurrentValue().doubleValue();

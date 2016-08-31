@@ -20,11 +20,14 @@ public class PortfolioReturnSimulationTest {
 
 	@Before
 	public void setup() {
-		inflationTrackingPortfolioSimulation = new PortfolioReturnSimulation(numPortfolios, numPeriods, initialValue,
+		//
+		//	Set up three simulations: aggressive, very conservative, and inflation-tracking portfolio simulations
+		
+		inflationTrackingPortfolioSimulation = new PortfolioReturnSimulation("Inflation tracking", numPortfolios, numPeriods, initialValue,
 				inflationRate, 0.0d, inflationRate);
-		aggressivePortfolioSimulation = new PortfolioReturnSimulation(numPortfolios, numPeriods, initialValue,
+		aggressivePortfolioSimulation = new PortfolioReturnSimulation("Aggressive", numPortfolios, numPeriods, initialValue,
 				0.094324d, 0.15675d, inflationRate);
-		conservativePortfolioSimulation = new PortfolioReturnSimulation(numPortfolios, numPeriods, initialValue,
+		conservativePortfolioSimulation = new PortfolioReturnSimulation("Very conservative", numPortfolios, numPeriods, initialValue,
 				0.06189d, 0.063438d, inflationRate);
 	}
 
@@ -63,10 +66,10 @@ public class PortfolioReturnSimulationTest {
 
 	private void showResults(PortfolioReturnSimulation portfolioSimulation) {
 
-		System.out.println("Expected annual return = " + portfolioSimulation.expectedReturn
-				+ ", Expected annual risk = " + portfolioSimulation.expectedRisk + ": Median value = "
-				+ portfolioSimulation.getInflationAdjustedMedianValue() + ", Best 10% value = "
-				+ portfolioSimulation.getInflationAdjustedTop10PercentileValue() + ", Worst 10% value = "
+		System.out.println(portfolioSimulation.name + ": Expected annual return = " + portfolioSimulation.expectedReturn
+				+ ", Expected annual risk = " + portfolioSimulation.expectedRisk + ": Inflation Adjusted Median value = "
+				+ portfolioSimulation.getInflationAdjustedMedianValue() + ", Inflation Adjusted Best 10% value = "
+				+ portfolioSimulation.getInflationAdjustedTop10PercentileValue() + ", Inflation Adjusted Worst 10% value = "
 				+ portfolioSimulation.getInflationAdjustedBottom10PercentileValue());
 
 	}

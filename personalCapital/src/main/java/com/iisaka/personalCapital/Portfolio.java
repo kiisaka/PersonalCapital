@@ -15,23 +15,25 @@ public class Portfolio {
 	// For this exercise, portfolio values are rounded to the nearest cent after
 	// each computation.
 
+	String name;
 	BigDecimal currentValue;
 	Double expectedReturn;
 	Double expectedRisk;
 
-	public Portfolio(BigDecimal currentValue, Double expectedReturn, Double expectedRisk) {
+	public Portfolio(String name, BigDecimal currentValue, Double expectedReturn, Double expectedRisk) {
 
+		this.name = name;
 		this.currentValue = currentValue;
 		this.expectedReturn = expectedReturn;
 		this.expectedRisk = expectedRisk;
 	}
 
-	//	Compute the value of the portfolio, applying a random return, given the
-	//	expected return and the expected risk
+	// Compute the value of the portfolio, applying a random return, given the
+	// expected return and the expected risk
 	//
-	//	Use the nextGaussian() function to compute the random return
-	//	Round to the nearest cent: the rounding rule depends on the currency and
-	//	the regulatory bodies governing the portfolio
+	// Use the nextGaussian() function to compute the random return
+	// Round to the nearest cent: the rounding rule depends on the currency and
+	// the regulatory bodies governing the portfolio
 
 	public void computeRandomReturn() {
 		currentValue = currentValue
