@@ -1,6 +1,7 @@
 package com.iisaka.personalCapital;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +43,7 @@ public class PortfolioReturnSimulation {
 	}
 
 	//
-	// Run the experiment.
+	// Run the Monte Carlo experiment.
 	// Random returns are applied to each of the portfolios x times,
 	// where x = number of periods (year)
 	//
@@ -81,27 +82,31 @@ public class PortfolioReturnSimulation {
 	//
 
 	public Double getInflationAdjustedMedianValue() {
-		return calculateInflatationAdjustedValue(getMedianValue());
+		return calculateInflationAdjustedValue(getMedianValue()).doubleValue();
 	}
 
 	public Double getInflationAdjustedTop10PercentileValue() {
-		return calculateInflatationAdjustedValue(getTop10PercentileValue());
+		return calculateInflationAdjustedValue(getTop10PercentileValue()).doubleValue();
 	}
 
 	public Double getInflationAdjustedBottom10PercentileValue() {
-		return calculateInflatationAdjustedValue(getBottom10PercentileValue());
+		return calculateInflationAdjustedValue(getBottom10PercentileValue()).doubleValue();
 	}
 
 	//
 	// Adjust the portfolio value by the inflation adjustment factor
 	//
 
-	Double calculateInflatationAdjustedValue(Double portfolioValue) {
-		return portfolioValue / getInflationAdjustmentFactor();
+	BigDecimal calculateInflationAdjustedValue(Double portfolioValue) {
+		return calculateInflationAdjustedValue(new BigDecimal(portfolioValue));
+	}
+	
+	BigDecimal calculateInflationAdjustedValue(BigDecimal portfolioValue) {
+		return portfolioValue.divide(new BigDecimal(getInflationAdjustmentFactor()),2,RoundingMode.HALF_DOWN);
 	}
 
 	//
-	// Compute the inflation adjustment factor if necessary
+	// Compute the inflation adjustment factor if necessary, to compute the present or future value
 	//
 
 	private Double getInflationAdjustmentFactor() {

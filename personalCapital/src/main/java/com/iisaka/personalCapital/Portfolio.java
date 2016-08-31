@@ -26,8 +26,12 @@ public class Portfolio {
 		this.expectedRisk = expectedRisk;
 	}
 
-	// Compute the value of the portfolio, applying a random return, given the
-	// expected return and the expected risk
+	//	Compute the value of the portfolio, applying a random return, given the
+	//	expected return and the expected risk
+	//
+	//	Use the nextGaussian() function to compute the random return
+	//	Round to the nearest cent: the rounding rule depends on the currency and
+	//	the regulatory bodies governing the portfolio
 
 	public void computeRandomReturn() {
 		currentValue = currentValue

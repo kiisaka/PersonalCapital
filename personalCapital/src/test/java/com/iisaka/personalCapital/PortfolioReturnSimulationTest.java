@@ -30,6 +30,10 @@ public class PortfolioReturnSimulationTest {
 
 	@Test
 	public void runPortfolioSimulations() {
+		//
+		//	Run simulations of two types of portfolios: aggressive and very conservative
+		//
+		
 		aggressivePortfolioSimulation.run();
 		conservativePortfolioSimulation.run();
 
@@ -39,10 +43,15 @@ public class PortfolioReturnSimulationTest {
 	@Test
 	public void testInflationTrackingPortfolio() {
 
+		//
+		//	Run a simulation of portfolios tracking the inflation, with 0 risk.
+		//	Verify that the present value of the portfolio is the same as the initial value.
+		//
+		
 		inflationTrackingPortfolioSimulation.run();
 		showResults(inflationTrackingPortfolioSimulation);
 		assertTrue(Math.abs(inflationTrackingPortfolioSimulation.getInflationAdjustedMedianValue()
-				- initialValue.doubleValue()) < 0.01);
+				- initialValue.doubleValue()) <= 0.01);
 	}
 
 	private void showResults() {
