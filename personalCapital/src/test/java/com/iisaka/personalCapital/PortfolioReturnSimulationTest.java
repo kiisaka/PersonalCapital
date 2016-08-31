@@ -40,7 +40,8 @@ public class PortfolioReturnSimulationTest {
 		aggressivePortfolioSimulation.run();
 		conservativePortfolioSimulation.run();
 
-		showResults();
+		showResults(aggressivePortfolioSimulation);
+		showResults(conservativePortfolioSimulation);
 	}
 
 	@Test
@@ -55,13 +56,6 @@ public class PortfolioReturnSimulationTest {
 		showResults(inflationTrackingPortfolioSimulation);
 		assertTrue(Math.abs(inflationTrackingPortfolioSimulation.getInflationAdjustedMedianValue()
 				- initialValue.doubleValue()) <= 0.01);
-	}
-
-	private void showResults() {
-
-		showResults(aggressivePortfolioSimulation);
-		showResults(conservativePortfolioSimulation);
-
 	}
 
 	private void showResults(PortfolioReturnSimulation portfolioSimulation) {
